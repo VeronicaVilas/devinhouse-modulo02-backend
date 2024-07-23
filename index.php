@@ -12,7 +12,7 @@
     <section class="algoritmos-lista">
         
         <div class="algoritmo-item">
-            <h2><a href="pages/imc.php">IMC</a></h2>
+            <h2><a href="pages/calculadora-de-imc/index.php">IMC</a></h2>
         </div>
 
         <div class="algoritmo-item">
