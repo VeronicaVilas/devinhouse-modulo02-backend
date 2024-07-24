@@ -24,7 +24,7 @@
         </div>
 
         <div class="algoritmo-item">
-            <h2><a href="pages/lanchonete.php">Lanchonete</a></h2>
+            <h2><a href="pages/lanchonete/index.php">Lanchonete</a></h2>
         </div>
 
     </section>

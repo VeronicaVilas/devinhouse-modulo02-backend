@@ -37,7 +37,7 @@
             <h1>Índice de Massa Corporal (IMC)</h1>
         </div>
         <section class="right-container" id="form-section" style="<?php echo ($imc !== null) ? 'display: none;' : 'display: block;'; ?>">
-            <form id="imcForm" action="<?=$_SERVER['PHP_SELF']?>" method="post" onsubmit="showResult();">
+            <form id="imcForm" action="<?=$_SERVER['PHP_SELF']?>" method="post">
                 <div class="form-header">
                     <h1>Calculadora - IMC</h1>
                 </div>
