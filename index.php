@@ -20,7 +20,7 @@
         </div>
 
         <div class="algoritmo-item">
-            <h2><a href="pages/calculadora.php">Calculadora</a></h2>
+            <h2><a href="pages/calculadora/index.php">Calculadora</a></h2>
         </div>
 
         <div class="algoritmo-item">

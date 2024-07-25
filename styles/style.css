@@ -47,6 +47,7 @@ body {
 
 .form-header {
     margin-bottom: 18px;
+    margin-top: -24px;
 }
 
 .form-header h1::after {
