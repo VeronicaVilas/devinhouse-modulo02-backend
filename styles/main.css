@@ -68,7 +68,7 @@ body {
     transform: translateX(0.15rem)
 }
   
-.notititle {
+.algorithms-item-title {
     color: #D81B60;
     padding: 0.65rem 0.25rem 0.4rem 1.25rem;
     font-weight: 500;
@@ -77,23 +77,23 @@ body {
     z-index: 5;
 }
   
-.algorithms-item:hover .notititle {
+.algorithms-item:hover .algorithms-item-title {
     transform: translateX(0.15rem)
 }
   
-.notibody {
+.algorithms-item-info {
     padding: 0 1.25rem;
     transition: transform 300ms ease;
     z-index: 5;
     color: black;
 }
   
-.algorithms-item:hover .notibody {
+.algorithms-item:hover .algorithms-item-info {
     transform: translateX(0.25rem)
 }
   
-.notiglow,
-.notiborderglow {
+.algorithms-item-glow,
+.algorithms-item-borderglow {
     position: absolute;
     width: 20rem;
     height: 20rem;
@@ -103,29 +103,18 @@ body {
     transition: opacity 300ms ease;
 }
   
-.notiglow {
+.algorithms-item-glow {
     z-index: 3;
 }
   
-.notiborderglow {
+.algorithms-item-borderglow {
     z-index: 1;
 }
   
-.algorithms-item:hover .notiglow {
+.algorithms-item:hover .algorithms-item-glow {
     opacity: 0.1
 }
   
-.algorithms-item:hover .notiborderglow {
+.algorithms-item:hover .algorithms-item-borderglow {
     opacity: 0.1
-}
-  
-.note {
-    color: var(--color);
-    position: fixed;
-    top: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    font-size: 0.9rem;
-    width: 75%;
 }
