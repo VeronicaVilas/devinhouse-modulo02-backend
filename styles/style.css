@@ -19,7 +19,7 @@ body {
 
 .container {
     width: 80%;
-    height: 80vh;
+    height: 90vh;
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.212);
 }
@@ -47,7 +47,7 @@ body {
 
 .form-header {
     margin-bottom: 18px;
-    margin-top: -70px;
+    margin-top: -50px;
 }
 
 .form-header h1::after {
@@ -70,18 +70,26 @@ body {
 }
 
 .input-field {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-width: 2px;
-    border-style: solid;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    width: 100%;
+    margin: 8px 0;
 }
 
-input[type=text], [type=number], select, input[type=date], input[type=date], input[type=datetime], input[type=email], input[type=month], input[type=password], input[type=range], input[type=tel], input[type=time], input[type=week] {
+.input-field i {
+    position: absolute;
+    left: 10px;
+}
+
+.input-field span {
+    position: absolute;
+    right: 10px;
+}
+
+input[type=text], input[type=number], select, input[type=date], input[type=datetime], input[type=email], input[type=month], input[type=password], input[type=range], input[type=tel], input[type=time], input[type=week] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 40px;
     font-size: 1em;
     margin: 8px 0;
     display: inline-block;
@@ -151,5 +159,9 @@ table {
 
     .right-container {
         width: 100%;
+    }
+
+    .button-submit button {
+        margin-top: -8px;
     }
 }
