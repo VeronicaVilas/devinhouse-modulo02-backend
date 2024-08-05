@@ -1,8 +1,9 @@
 <?php 
 
-require_once 'utils.php';
+require_once '../src/Validations/validationFunctions.php';
+require_once '../src/Utils/utilityFunctions.php';
 
-define('FILE_CITY', 'database.txt');
+define('FILE_CITY', '../src/data/database.txt');
 
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *"); 
@@ -11,84 +12,62 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-/**
- * Processa solicitações POST para adicionar novos registros à base de dados.
- */
-
-if($method === 'POST') {
-
+if ($method === 'POST') {
     $body = getBody();
+    $data = filterAndValidateData($body);
 
-    $name = filter_var($body->name, FILTER_SANITIZE_SPECIAL_CHARS);
-    $contact = filter_var($body->contact, FILTER_SANITIZE_SPECIAL_CHARS);
-    $opening_hours = filter_var($body->opening_hours, FILTER_SANITIZE_SPECIAL_CHARS);
-    $description = filter_var($body->description, FILTER_SANITIZE_SPECIAL_CHARS);
-    $latitude = filter_var($body->latitude, FILTER_VALIDATE_FLOAT);
-    $longitude = filter_var($body->longitude, FILTER_VALIDATE_FLOAT);
-
-    if(!$name || !$contact || !$opening_hours || !$description || !$latitude || !$longitude) {
+    if ($data === false) {
         responseError('Digite as informações para prosseguir com o cadastro!', 400);
     }
 
     $allData = readFileContent(FILE_CITY);
 
-    foreach ($allData as $item) {
-        if ($item->name === $name) {
-            responseError('Este lugar já está cadastrado!', 409);
-            exit;
-        }
-    };
+    if (isNameDuplicate($allData, $data['name'])) {
+        responseError('Este lugar já está cadastrado!', 409);
+    }
 
-    $data = [
-        'id' => generateUniqueID(),
-        'name' => $name,
-        'contact' => $contact,
-        'opening_hours' => $opening_hours,
-        'description' => $description,
-        'latitude' => $latitude, 
-        'longitude' => $longitude
-    ];
-
+    $data['id'] = generateUniqueID();
     array_push($allData, $data);
     saveFileContent(FILE_CITY, $allData);
     response($data, 201);
 
-} else if ($method === 'GET' && !isset($_GET['id'])){
-    $allData = readFileContent(FILE_CITY);
-    response($allData, 200);
-
-} else if ($method === 'DELETE') {
-    $id = validateID();
-
-    if (!$id) {
-        responseError('ID ausente ou inválido!', 400);
-    }
-
-    $allData = readFileContent(FILE_CITY);
-    $itemsFiltered = array_values(array_filter($allData, function ($item) use ($id) {
-        return $item->id !== $id;
-    }));
-
-    var_dump($itemsFiltered);
-    saveFileContent(FILE_CITY, $itemsFiltered);
-    response('', 204);
-
-} else if($method === 'GET' && $_GET['id']) {
-    $id = validateID();
-
-    if (!$id) {
-        responseError('ID ausente ou inválido!', 400);
-    }
-
-    $allData = readFileContent(FILE_CITY);
-
-    foreach($allData as $item) {
-        if($item->id === $id) {
+} elseif ($method === 'GET') {
+    if (!isset($_GET['id'])) {
+        $allData = readFileContent(FILE_CITY);
+        response($allData, 200);
+    } else {
+        $id = validateID();
+        if (!$id) {
+            responseError('ID ausente ou inválido!', 400);
+        }
+        $allData = readFileContent(FILE_CITY);
+        $item = findItemByID($allData, $id);
+        if ($item) {
             response($item, 200);
+        } else {
+            responseError('Item não encontrado!', 404);
         }
     }
 
-} else if($method === 'PUT') {
+} elseif ($method === 'DELETE') {
+    $id = validateID();
+    if (!$id) {
+        responseError('ID ausente ou inválido!', 400);
+    }
+
+    $allData = readFileContent(FILE_CITY);
+    $filteredData = array_filter($allData, function ($item) use ($id) {
+        return $item->id !== $id;
+    });
+
+    if (count($filteredData) === count($allData)) {
+        responseError('Item não encontrado para exclusão!', 404);
+    }
+
+    saveFileContent(FILE_CITY, array_values($filteredData));
+    response('', 204);
+
+} elseif ($method === 'PUT') {
     $body = getBody();
     $id = validateID();
 
@@ -97,20 +76,16 @@ if($method === 'POST') {
     }
 
     $allData = readFileContent(FILE_CITY);
+    $updatedData = updateItem($allData, $id, $body);
 
-    foreach($allData as $position => $item) {
-        if($item->id === $id) {
-            $allData[$position]->name =  isset($body->name) ? $body->name : $item->name;
-            $allData[$position]->contact =  isset($body->contact) ? $body->contact : $item->contact;
-            $allData[$position]->opening_hours =   isset($body->opening_hours) ? $body->opening_hours : $item->opening_hours;
-            $allData[$position]->description =  isset($body->description) ? $body->description : $item->description;
-            $allData[$position]->latitude =  isset($body->latitude) ? $body->latitude : $item->latitude;
-            $allData[$position]->longitude =  isset($body->longitude) ? $body->longitude : $item->longitude;
-        }
+    if ($updatedData === false) {
+        responseError('Item não encontrado para atualização!', 404);
     }
-    
-    saveFileContent(FILE_CITY, $allData);
-    response([], 200);
-}
 
+    saveFileContent(FILE_CITY, $updatedData);
+    response([], 200);
+
+} else {
+    responseError('Método não permitido!', 405);
+}
 ?>
