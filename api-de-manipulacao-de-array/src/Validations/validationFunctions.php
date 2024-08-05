@@ -1,7 +1,4 @@
 <?php
-
-require_once './src/Utils/utilityFunctions.php';
-
 /**
  *  Filtra e valida os dados recebidos do corpo da solicitação.
  * 
@@ -9,27 +6,27 @@ require_once './src/Utils/utilityFunctions.php';
  * @return array|false Retorna uma matriz associativa de dados validados ou falso, se a validação falhar.
  */
 
- function filterAndValidateData($body) {
-    $name = filter_var($body->name, FILTER_SANITIZE_SPECIAL_CHARS);
-    $contact = filter_var($body->contact, FILTER_SANITIZE_SPECIAL_CHARS);
-    $opening_hours = filter_var($body->opening_hours, FILTER_SANITIZE_SPECIAL_CHARS);
-    $description = filter_var($body->description, FILTER_SANITIZE_SPECIAL_CHARS);
-    $latitude = filter_var($body->latitude, FILTER_VALIDATE_FLOAT);
-    $longitude = filter_var($body->longitude, FILTER_VALIDATE_FLOAT);
+ function filterAndValidateData($data) {
+    $name = filter_var($data->name, FILTER_SANITIZE_SPECIAL_CHARS);
+    $contact = filter_var($data->contact, FILTER_SANITIZE_SPECIAL_CHARS);
+    $opening_hours = filter_var($data->opening_hours, FILTER_SANITIZE_SPECIAL_CHARS);
+    $description = filter_var($data->description, FILTER_SANITIZE_SPECIAL_CHARS);
+    $latitude = filter_var($data->latitude, FILTER_VALIDATE_FLOAT);
+    $longitude = filter_var($data->longitude, FILTER_VALIDATE_FLOAT);
 
-    if (!$name || !$contact || $opening_hours || !$description || !$latitude || !$longitude) {
-        return false;
+    if ($name && $contact && $opening_hours && $description && $latitude !== false && $longitude !== false) {
+        return [
+            'name' => $name,
+            'contact' => $contact,
+            'opening_hours' => $opening_hours,
+            'description' => $description,
+            'latitude' => $latitude,
+            'longitude' => $longitude
+        ];
     }
 
-    return [
-        'name' => $name,
-        'contact' => $contact,
-        'opening_hours' => $opening_hours,
-        'description' => $description,
-        'latitude' => $latitude,
-        'longitude' => $longitude
-    ];
- }
+    return false;
+}
 
 /**
  * Verifica se o nome já existe nos dados.
@@ -85,4 +82,13 @@ require_once './src/Utils/utilityFunctions.php';
     }
     return false;
  }
+
+ /**
+ * Valida o ID fornecido na consulta da URL.
+ *
+ * @return int|false Retorna o ID validado como um inteiro se for válido, caso contrário, retorna `false`.
+ */
+ function validateID() {
+    return filter_var($_GET['id'], FILTER_VALIDATE_INT);
+}
 ?>

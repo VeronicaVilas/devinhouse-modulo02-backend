@@ -29,7 +29,3 @@ function generateUniqueID() {
   $integerID = intval($uniqueID);
   return $integerID;
 }
-
-function validateID() {
-    return filter_var($_GET['id'], FILTER_VALIDATE_INT);
-}
