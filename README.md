@@ -14,9 +14,14 @@ Este acervo digital, foi criado para fins de estudo e aprimoramento. Reúne toda
     </thead>
     <tbody>
         <tr>
-          <td>01</td>
+          <td align="center">01</td>
           <td><a href="introducao-ao-php">Introdução ao PHP</a></td>
-          <td>25/09/2023 até 02/10/2023</td>
+          <td>25/09/2023 até 01/10/2023</td>
+        </tr>
+        <tr>
+          <td align="center">02</td>
+          <td><a href="api-de-manipulacao-de-array">Api de manipulação de array</a></td>
+          <td>02/10/2023 até 08/10/2023</td>
         </tr>
     </tbody>
 </table>
