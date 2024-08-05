@@ -2,7 +2,7 @@
 
 require_once 'utils.php';
 
-define('FILE_CITY', 'uruguai.txt');
+define('FILE_CITY', 'database.txt');
 
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *"); 
@@ -10,6 +10,10 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, X-Requested-With");
 
 $method = $_SERVER['REQUEST_METHOD'];
+
+/**
+ * Processa solicitações POST para adicionar novos registros à base de dados.
+ */
 
 if($method === 'POST') {
 
