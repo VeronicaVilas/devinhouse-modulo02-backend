@@ -1,0 +1,165 @@
+<div align="center">
+  <h1>- [M2S02]: Api de Manipulação de Array -</h1>
+</div>
+
+Este repositório foi criado com o objetivo de estudo e contém uma API desenvolvida em PHP. A API permite aos usuários realizar operações CRUD (Criar, Ler, Atualizar e Deletar) sobre informações relacionadas a instituições. Com esta API, é possível gerenciar dados como o nome da instituição e sua localização, facilitando a pesquisa e a manutenção dessas informações.
+
+<h2> 🧮 Ferramentas e tecnologias </h2>
+
+![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)
+![Git](https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git&logoColor=E94D5F)
+![PHP](https://img.shields.io/badge/PHP-000?style=for-the-badge&logo=php&logoColor=777BB4)
+
+<h2> 🛠️ Criando e executando localmente o projeto </h2>
+
+Criar e executar a api em seu ambiente de desenvolvimento local é muito fácil. Certifique-se de ter o [Git](https://git-scm.com/downloads), [Visual Studio Code](https://code.visualstudio.com/)  e o XAMPP instalados e siga as instruções abaixo.
+
+1. Clone o código fonte:
+
+Abra o terminal ou prompt de comando e execute o seguinte comando para clonar o código fonte:
+
+```bash
+git clone https://github.com/VeronicaVilas/devinhouse-modulo02-backend.git
+```
+
+2. Inicie o Apache no XAMPP
+
+Abra o painel de controle do XAMPP e inicie o módulo Apache.
+
+3. Colocar o Projeto no Diretório do XAMPP:
+
+- No Windows: Mova ou copie o diretório do seu projeto para a pasta htdocs dentro do diretório de instalação do XAMPP (por padrão, C:\xampp\htdocs\).
+- No macOS/Linux: A pasta htdocs geralmente está localizada em /Applications/XAMPP/htdocs/ (no macOS) ou /opt/lampp/htdocs/ (no Linux).
+
+4. Acesse o Projeto
+
+No navegador, abra o endereço local correspondente ao nome do repositório. Substitua nome-do-repositório pelo nome real da pasta onde o projeto foi colocado:
+
+```bash
+git clone http://localhost/nome-do-repositório
+```
+
+5. Teste a API
+
+Para testar a API, utilize ferramentas como Postman ou Thunder Client, que permitem enviar requisições HTTP e verificar as respostas.
+
+<h2> 🏋🏽 Documentação da API </h2>
+
+<h3> 🚥 Endpoints </h3>
+
+<h4> Cadastro de instituição </h4>
+
+```http
+  POST http://localhost/nome-do-repositório
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Autoincremental**. Chave primaria|
+| `name` | `string` | **Obrigatório**. Nome da instituição|
+| `contact` | `string` | **Obrigatório**. Contato da instituição|
+| `opening hours` | `string` | **Obrigatório**. Horário de abertura e fechamento|
+| `description` | `string` | **Obrigatório**. Descrição do local|
+| `latitude` | `float` | **Obrigatório**. Latitude do local|
+| `longitude` | `float` | **Obrigatório**. Longitude do local|
+
+
+Request JSON exemplo
+```http
+{
+    "name": "Teatro Solis",
+    "contact": "59819503323",
+    "opening_hours": "11:00-16:00",
+    "description": " Teatro Solís da cidade de Montevidéu foi inaugurado no ano de 1856.",
+    "latitude": -34.9076336,
+    "longitude": -56.2011228
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `201` | sucesso|
+|  `400` | dados inválidos|
+|  `409` | Cadastro de dados duplicados|
+
+
+Exemplo de resposta:
+```http
+{
+    "name": "Teatro Solis",
+    "contact": "59819503323",
+    "opening_hours": "11:00-16:00",
+    "description": " Teatro Solís da cidade de Montevidéu foi inaugurado no ano de 1856.",
+    "latitude": -34.9076336,
+    "longitude": -56.2011228,
+    "id": 172297238943578
+}
+```
+
+<h4> Listagem de instituições </h4>
+
+```http
+  GET http://localhost/nome-do-repositório
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "name": "Teatro Solis",
+    "contact": "59819503323",
+    "opening_hours": "11:00-16:00",
+    "description": " Teatro Solís da cidade de Montevidéu foi inaugurado no ano de 1856.",
+    "latitude": -34.9076336,
+    "longitude": -56.2011228,
+    "id": 172297238943578
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `404` | não encontrado registro com o id informado|
+
+
+<h4> Deleção de instituição </h4>
+
+```http
+  DELETE http://localhost/nome-do-repositório/{id}
+```
+Não é necessario resquest body e o id é passado por Query Parameters.
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Obrigatório**. número inteiro chave primaria|
+
+Não há response no body em caso de sucesso
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `204` | sucesso|
+|  `400` | id ausente ou inválido|
+|  `404` | não encontrado registro com o id informado|
+
+<h4> Atualização dos dados da instituição </h4>
+
+```http
+  PUT http://localhost/nome-do-repositório/{id}
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | Nome da instituição|
+| `contact` | `string` | Contato da instituição|
+| `opening hours` | `string` | Horário de abertura e fechamento|
+| `description` | `string` | Descrição do local|
+| `latitude` | `float` | Latitude do local|
+| `longitude` | `float` | Longitude do local|
+
+Não há response no body em caso de sucesso
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `404` | não encontrado registro com o id informado|
+
