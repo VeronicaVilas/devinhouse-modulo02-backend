@@ -1,6 +1,4 @@
 <?php
-    require_once '../../src/Utils/utilityFunctions.php';
-
     class Review {
         private $id, $place_id, $name, $email, $stars, $date, $status;
 
@@ -22,7 +20,7 @@
                 'date' => $this->getDate()
             ];
 
-            $allData = readFileContent('assessments.php');
+            $allData = readFileContent('../src/data/assessments.txt');
             array_push($allData, $data);
             saveFileContent('assessments.php', $allData);
         }

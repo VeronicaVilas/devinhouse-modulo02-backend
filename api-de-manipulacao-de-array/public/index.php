@@ -1,5 +1,5 @@
 <?php
-
+require_once '../config.php';
 require_once '../src/Validations/validationFunctions.php';
 require_once '../src/Utils/utilityFunctions.php';
 
