@@ -25,6 +25,17 @@
             saveFileContent('assessments.php', $allData);
         }
 
+        public function list()
+        {
+            $allData = readFileContent('avaliacoes.txt');
+    
+            $filtered = array_values(array_filter($allData, function ($review) {            
+                return $review->place_id === $this->getPlaceId();
+            }));
+    
+            return $filtered;
+        }
+    
         public function getId()
         {
                 return $this->id;

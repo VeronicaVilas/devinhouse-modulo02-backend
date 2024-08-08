@@ -35,5 +35,13 @@
         $review->save();
 
         response(['message' => 'Cadastrado com sucesso!'], 201);
-    }
+    } else if ($method === 'GET') {
+        $place_id = sanitizeInput($_GET, 'Id', FILTER_VALIDATE_INT, false);
+
+        if (!$place_id) responseError('ID ausente ou inválido!', 400);
+
+        $reviews = new Review($place_id);
+
+        response($reviews->list(), 200);
+    } 
 ?>
