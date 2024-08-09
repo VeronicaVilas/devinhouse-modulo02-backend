@@ -19,9 +19,9 @@ Este acervo digital, foi criado para fins de estudo e aprimoramento. Reúne toda
           <td>25/09/2023 até 01/10/2023</td>
         </tr>
         <tr>
-          <td align="center">02 e 03</td>
+          <td align="center">02, 03 e 05</td>
           <td><a href="api-de-manipulacao-de-array">Api de manipulação de array</a></td>
-          <td>02/10/2023 até 15/10/2023</td>
+          <td>02/10/2023 até 05/11/2023</td>
         </tr>
     </tbody>
 </table>
