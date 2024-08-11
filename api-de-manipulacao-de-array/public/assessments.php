@@ -43,5 +43,16 @@
         $reviews = new Review($place_id);
 
         response($reviews->list(), 200);
-    } 
+    } else if ($method == "PUT") {
+        $body = getbody();
+        $id = sanitizeInput($_GET, 'id', FILTER_VALIDATE_INT, false);
+        
+        $status = sanitizeInput($body, 'status', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if (!$status) {
+            responseError('Status ausente', 400);
+        }
+
+        $review = new Review();
+    }
 ?>
