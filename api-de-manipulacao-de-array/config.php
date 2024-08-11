@@ -2,6 +2,7 @@
     date_default_timezone_set('America/Sao_Paulo');
 
     define('FILE_CITY', '../src/data/database.txt');
+    define('FILE_REVIEWS', '../src/data/assessments.txt');
 
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *"); 
