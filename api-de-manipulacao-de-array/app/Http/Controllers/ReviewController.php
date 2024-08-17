@@ -38,5 +38,11 @@ class ReviewController {
             responseError("Não foi possível realizar o cadastro", 400);
         }
     }
+
+    public function list() {
+        $reviewDAO = new ReviewDAO();
+        $result = $reviewDAO->findMany();
+        response($result, 200);
+    }
 }
 ?>
