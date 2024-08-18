@@ -9,5 +9,7 @@
         $controller->create();
     } else if ($method === 'GET' && !isset($_GET['id'])) {
         $controller->list();
+    } else if ($method === 'GET' && $_GET['id']) {
+        $controller->listOne();
     }
 ?>
