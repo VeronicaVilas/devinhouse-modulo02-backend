@@ -11,5 +11,7 @@
         $controller->list();
     } else if ($method === 'GET' && $_GET['id']) {
         $controller->listOne();
+    } else if ($method === 'PUT') {
+        $controller->update(); 
     }
 ?>

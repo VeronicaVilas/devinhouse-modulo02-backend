@@ -57,5 +57,20 @@ class ReviewController {
 
         response($item, 200);
     }
+
+    public function update()
+    {
+        $body = getBody();
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        if (!$id) {
+            responseError('ID ausente', 400);
+        }
+
+        $reviewDAO = new ReviewDAO();
+        $reviewDAO->updateOne($id, $body);
+
+        response(['message' => 'atualizado com sucesso'], 200);
+    }
 }
 ?>
