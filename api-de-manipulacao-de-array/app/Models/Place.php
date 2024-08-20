@@ -37,12 +37,12 @@ class Place {
         return $this;
     }
 
-    public function getOpening_hours()
+    public function getOpeningHours()
     {
         return $this->opening_hours;
     }
 
-    public function setOpening_hours($opening_hours)
+    public function setOpeningHours($opening_hours)
     {
         $this->opening_hours = $opening_hours;
 
