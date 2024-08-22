@@ -7,5 +7,7 @@ $controller = new PlaceController();
 
 if ($method === 'POST') {
     $controller->create();
+} else if ($method === 'GET' && !isset($_GET['id'])) {
+    $controller->list();
 }
 ?>

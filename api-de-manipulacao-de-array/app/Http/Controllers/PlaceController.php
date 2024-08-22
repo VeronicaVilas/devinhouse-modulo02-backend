@@ -34,6 +34,12 @@ class PlaceController {
             responseError("Não foi possível realizar o cadastro!", 400);
         }
     }
+
+    public function list() {
+        $placeDAO = new PlaceDAO();
+        $result = $placeDAO->findMany();
+        response($result, 200);
+    }
 }
 
 ?>
