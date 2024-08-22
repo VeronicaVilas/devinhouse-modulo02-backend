@@ -49,5 +49,15 @@ class PlaceDAO extends Database {
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function findOne($id) {
+        $sql = "SELECT *from places where id = :id_value";
+
+        $statement = ($this->getConnection())->prepare($sql);
+        $statement->bindValue(":id_value", $id);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>
