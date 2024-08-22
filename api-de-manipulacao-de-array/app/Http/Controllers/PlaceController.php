@@ -40,6 +40,20 @@ class PlaceController {
         $result = $placeDAO->findMany();
         response($result, 200);
     }
+
+    public function listOne() {
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if (!$id) {
+            responseError('ID ausente!', 400);
+        }
+
+        $PlaceDAO = new PlaceDAO();
+        $item = $PlaceDAO->findOne($id);
+
+        response($item, 200);
+    }
+
 }
 
 ?>
