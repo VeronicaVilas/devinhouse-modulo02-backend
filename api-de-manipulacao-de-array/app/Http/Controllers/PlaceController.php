@@ -54,6 +54,19 @@ class PlaceController {
         response($item, 200);
     }
 
+    public function delete() {
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if (!$id) {
+            responseError('ID ausente', 400);
+        }
+
+        $placeDAO = new PlaceDAO();
+        $placeDAO->deleteOne($id);
+
+        response(['message' => 'Deletado com sucesso!'], 204);
+    }
+
 }
 
 ?>

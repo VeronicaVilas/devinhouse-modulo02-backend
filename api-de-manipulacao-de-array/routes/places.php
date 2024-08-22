@@ -11,5 +11,7 @@ if ($method === 'POST') {
     $controller->list();
 } else if ($method === 'GET' && $_GET['id']) {
     $controller->listOne();
+} else if ($method === 'DELETE') {
+    $controller->delete();
 }
 ?>
