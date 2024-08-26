@@ -67,6 +67,20 @@ class PlaceController {
         response(['message' => 'Deletado com sucesso!'], 204);
     }
 
+    public function update() {
+        $body = getBody();
+        $id = filter_var($_GET['id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if(!$id) {
+            responseError('ID ausente', 400);
+        }
+
+        $placeDAO = new PlaceDAO();
+        $placeDAO->updateOne($id, $body);
+
+        response(['message' => 'Atualizado com sucesso!'], 200);
+    }
+
 }
 
 ?>
