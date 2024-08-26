@@ -13,5 +13,7 @@ if ($method === 'POST') {
     $controller->listOne();
 } else if ($method === 'DELETE') {
     $controller->delete();
+} else if ($method === 'PUT') {
+    $controller->update();
 }
 ?>
