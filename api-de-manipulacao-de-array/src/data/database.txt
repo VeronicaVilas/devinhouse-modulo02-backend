@@ -1,1 +1,0 @@
-[{"name":"Teatro Solis","contact":"59819503323","opening_hours":"11:00-16:00","description":" Teatro Sol\u00eds da cidade de Montevid\u00e9u foi inaugurado no ano de 1856.","latitude":-34.9076336,"longitude":-56.2011228,"id":172303861872264}]
