@@ -68,5 +68,71 @@ class PlaceDAO extends Database {
 
         $statement->execute();
     }
+
+    public function updateOne($id, $data)
+    {
+        $placeInDatabase = $this->findOne($id);
+
+        $sql = "update places
+                        set 
+                            name=:name_value,
+                            contact=:contact_value,
+                            opening_hours=:opening_hours_value,
+                            description=:description_value,
+                            latitude=:latitude_value,
+                            longitude=:longitude_value
+                    where id=:id_value
+             ";
+
+             $statement = ($this->getConnection())->prepare($sql);
+
+             $statement->bindValue(":id_value", $id);
+
+             $statement->bindValue(
+                 ":name_value",
+                 isset($data->name) ?
+                     $data->name :
+                     $placeInDatabase['name']
+             );
+
+             $statement->bindValue(
+                ":contact_value",
+                isset($data->contact) ?
+                    $data->contact :
+                    $placeInDatabase['contact']
+            );
+
+            $statement->bindValue(
+                ":opening_hours_value",
+                isset($data->opening_hours) ?
+                    $data->opening_hours :
+                    $placeInDatabase['opening_hours']
+            );
+
+            $statement->bindValue(
+                ":description_value",
+                isset($data->description) ?
+                    $data->description :
+                    $placeInDatabase['description']
+            );
+
+            $statement->bindValue(
+                ":latitude_value",
+                isset($data->latitude) ?
+                    $data->latitude :
+                    $placeInDatabase['latitude']
+            );
+
+            $statement->bindValue(
+                ":longitude_value",
+                isset($data->longitude) ?
+                    $data->longitude :
+                    $placeInDatabase['longitude']
+            );
+
+            $statement->execute();
+
+            return ['success' => true];
+    }
 }
 ?>
