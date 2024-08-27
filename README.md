@@ -19,9 +19,9 @@ Este acervo digital, foi criado para fins de estudo e aprimoramento. Reúne toda
           <td>25/09/2023 até 01/10/2023</td>
         </tr>
         <tr>
-          <td align="center">02</td>
+          <td align="center">02, 03 e 05</td>
           <td><a href="api-de-manipulacao-de-array">Api de manipulação de array</a></td>
-          <td>02/10/2023 até 08/10/2023</td>
+          <td>02/10/2023 até 05/11/2023</td>
         </tr>
     </tbody>
 </table>
@@ -35,8 +35,6 @@ Este acervo digital, foi criado para fins de estudo e aprimoramento. Reúne toda
 ![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=30A3DC)
 ![Git](https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git&logoColor=E94D5F)
 ![PHP](https://img.shields.io/badge/PHP-000?style=for-the-badge&logo=php&logoColor=777BB4)
-![HTML](https://img.shields.io/badge/HTML5-000?style=for-the-badge&logo=html5&logoColor=E34F26>)
-![CSS](https://img.shields.io/badge/CSS3-000?style=for-the-badge&logo=css3&logoColor=1572B6)
 
 ------------
 Disponibilizado por [Verônica Vilas](https://www.linkedin.com/in/veronica-vilas/ "veronica-vilas").

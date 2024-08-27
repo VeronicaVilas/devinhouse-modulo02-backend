@@ -2,7 +2,7 @@
   <h1>- [M2S02]: Api de Manipulação de Array -</h1>
 </div>
 
-Este repositório foi criado com o objetivo de estudo e contém uma API desenvolvida em PHP. A API permite aos usuários realizar operações CRUD (Criar, Ler, Atualizar e Deletar) sobre informações relacionadas a instituições. Com esta API, é possível gerenciar dados como o nome da instituição e sua localização, facilitando a pesquisa e a manutenção dessas informações.
+Este repositório foi criado com o objetivo de estudo e contém uma API desenvolvida em PHP. A API permite aos usuários realizar operações CRUD (Criar, Ler, Atualizar e Deletar) sobre informações relacionadas a instituições. Com esta API, é possível gerenciar dados como o nome da instituição, localização e avaliações, facilitando a pesquisa e a manutenção dessas informações.
 
 <h2> 🧮 Ferramentas e tecnologias </h2>
 
